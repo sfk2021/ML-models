@@ -77,6 +77,22 @@ st.markdown("""
 
 FitPredictAI uses a Machine Learning Linear Regression model to estimate a person's weight based on height. Simply enter your height and receive an instant prediction powered by AI.
 """)
+# AI Model Information
+st.markdown("## 🤖 AI Model Information")
+
+st.info("""
+**Model Type:** Linear Regression
+
+**Input Feature:** Height
+
+**Output:** Weight
+
+**Machine Learning Library:** Scikit-Learn
+
+**Deployment Platform:** Streamlit
+""")
+
+st.divider()
 
 # How It Works
 st.markdown("""
@@ -191,22 +207,7 @@ if st.button("Calculate BMI"):
 
 st.divider()
 
-# AI Model Information
-st.markdown("## 🤖 AI Model Information")
 
-st.info("""
-**Model Type:** Linear Regression
-
-**Input Feature:** Height
-
-**Output:** Weight
-
-**Machine Learning Library:** Scikit-Learn
-
-**Deployment Platform:** Streamlit
-""")
-
-st.divider()
 
 # Footer
 st.markdown(
