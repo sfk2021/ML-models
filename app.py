@@ -10,10 +10,10 @@ st.set_page_config(
     layout="centered"
 )
 
-# Load model
+# Load Model
 model = joblib.load("height_weight_model.pkl")
 
-# Custom CSS
+# Custom Styling
 st.markdown("""
 <style>
 
@@ -26,26 +26,26 @@ st.markdown("""
     -webkit-text-fill-color:transparent;
 }
 
-.subtitle{
+.subtitle {
     text-align:center;
     color:gray;
     font-size:18px;
 }
 
-.summary-card{
+.summary-card {
     padding:20px;
     border-radius:15px;
     background:#f0f8ff;
     border-left:6px solid #0072ff;
 }
 
-.footer{
+.footer {
     text-align:center;
     color:gray;
     font-size:14px;
 }
 
-div.stButton > button:first-child{
+div.stButton > button:first-child {
     background-color:#0072ff;
     color:white;
     border:none;
@@ -71,13 +71,22 @@ st.markdown(
 
 st.write("")
 
-# Description
+# About the App
 st.markdown("""
-### About the Project
+## About the App
 
-FitPredictAI uses a Machine Learning Linear Regression model to estimate
-a person's weight based on their height. Enter your height below and
-receive an instant prediction.
+FitPredictAI uses a Machine Learning Linear Regression model to estimate a person's weight based on height. Simply enter your height and receive an instant prediction powered by AI.
+""")
+
+# How It Works
+st.markdown("""
+## ⚙️ How It Works
+
+1. Enter your height in meters.
+2. The trained Linear Regression model receives the input.
+3. The model predicts the corresponding weight.
+4. Results are displayed along with a visual trend chart.
+5. Use the BMI Calculator for additional health insights.
 """)
 
 st.divider()
@@ -91,13 +100,13 @@ height = st.number_input(
     step=0.01
 )
 
-# Prediction
+# Prediction Button
 if st.button("Predict Weight"):
 
     prediction = model.predict([[height]])[0]
 
-    # Summary Card
-    st.markdown("## Prediction Summary")
+    # Prediction Summary
+    st.markdown("## 📋 Prediction Summary")
 
     st.markdown(
         f"""
@@ -105,7 +114,7 @@ if st.button("Predict Weight"):
         <h3>Prediction Results</h3>
         <p><b>Height Entered:</b> {height:.2f} m</p>
         <p><b>Predicted Weight:</b> {prediction:.2f} kg</p>
-        <p><b>Model:</b> Linear Regression</p>
+        <p><b>Model Used:</b> Linear Regression</p>
         </div>
         """,
         unsafe_allow_html=True
@@ -113,15 +122,16 @@ if st.button("Predict Weight"):
 
     st.write("")
 
-    # Visualization
+    # Interactive Visualization
     st.markdown("## 📊 Interactive Visualization")
 
-    heights = [1.0,1.2,1.4,1.6,1.8,2.0,2.2,2.4]
+    heights = [1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.4]
+
     weights = model.predict(
         pd.DataFrame(heights, columns=["Height"])
     )
 
-    fig, ax = plt.subplots(figsize=(8,4))
+    fig, ax = plt.subplots(figsize=(8, 4))
 
     ax.plot(
         heights,
@@ -194,23 +204,6 @@ st.info("""
 **Machine Learning Library:** Scikit-Learn
 
 **Deployment Platform:** Streamlit
-""")
-
-st.divider()
-
-# How It Works
-st.markdown("## ⚙️ How It Works")
-
-st.markdown("""
-1. Enter your height.
-
-2. The trained Linear Regression model receives the input.
-
-3. The model predicts the corresponding weight.
-
-4. Results are displayed along with a visual trend chart.
-
-5. Use the BMI Calculator for additional health insights.
 """)
 
 st.divider()
